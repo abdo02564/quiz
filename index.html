@@ -10,6 +10,8 @@
       background: linear-gradient(135deg, #ffe6f0, #f8bbd0);
       margin: 0;
       padding: 0;
+      user-select: none; /* منع تحديد النص */
+      cursor: default;   /* إخفاء مؤشر الكتابة */
     }
     .container {
       max-width: 800px;
@@ -42,6 +44,9 @@
       background: #fce4ec;
       border-left: 5px solid #ec407a;
       border-radius: 10px;
+    }
+    .question label {
+      font-weight: bold;
     }
     .result {
       font-weight: bold;
@@ -127,7 +132,7 @@
       const form = document.forms["quizForm"];
       let score = 0;
       const total = 6;
-  
+
       const correctAnswers = {
         q1: "1",
         q2: "1",
@@ -136,9 +141,9 @@
         q5: "1",
         q6: "1"
       };
-  
+
       document.querySelectorAll(".correct-answer").forEach(el => el.remove());
-  
+
       for (let i = 1; i <= total; i++) {
         const qName = "q" + i;
         const radios = form[qName];
@@ -146,7 +151,7 @@
         for (let radio of radios) {
           if (radio.checked) selectedValue = radio.value;
         }
-  
+
         if (selectedValue === correctAnswers[qName]) {
           score++;
         } else {
@@ -159,11 +164,10 @@
           radios[0].closest(".question").appendChild(explanation);
         }
       }
-  
+
       document.getElementById("result").innerHTML = "لقد حصلت على " + score + " من " + total + "!";
     }
   </script>
-  
 
 </body>
 </html>
